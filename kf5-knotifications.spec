@@ -1,15 +1,15 @@
-%define		kdeframever	5.45
+%define		kdeframever	5.48
 %define		qtver		5.3.2
 %define		kfname		knotifications
 
 Summary:	Desktop notifications
 Name:		kf5-%{kfname}
-Version:	5.45.0
+Version:	5.48.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	b98e3af1dd53c91dee83533350443b11
+# Source0-md5:	ed56ae9e27103101c2a18348a026c7bc
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
