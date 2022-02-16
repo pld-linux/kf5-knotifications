@@ -1,15 +1,15 @@
-%define		kdeframever	5.90
+%define		kdeframever	5.91
 %define		qtver		5.15.2
 %define		kfname		knotifications
 
 Summary:	Desktop notifications
 Name:		kf5-%{kfname}
-Version:	5.90.0
+Version:	5.91.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	a1c3fe160d36bcf1eaa5f1f60cd18051
+# Source0-md5:	392da2d1e13bdfbbe9f799f8b6ffd216
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -102,7 +102,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/KF5/KNotifications
-%{_includedir}/KF5/knotifications_version.h
 %{_libdir}/cmake/KF5Notifications
 %{_libdir}/libKF5Notifications.so
 %{qt5dir}/mkspecs/modules/qt_KNotifications.pri
