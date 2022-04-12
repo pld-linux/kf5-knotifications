@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeframever	5.92
+%define		kdeframever	5.93
 %define		qtver		5.15.2
 %define		kfname		knotifications
 
 Summary:	Desktop notifications
 Name:		kf5-%{kfname}
-Version:	5.92.0
+Version:	5.93.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	aaefd72a4ef639867ed18d0ef1db9821
+# Source0-md5:	7f4752b5e8b2f69737ad462a31974aa6
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
