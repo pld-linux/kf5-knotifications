@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeframever	5.96
+%define		kdeframever	5.97
 %define		qtver		5.15.2
 %define		kfname		knotifications
 
 Summary:	Desktop notifications
 Name:		kf5-%{kfname}
-Version:	5.96.0
+Version:	5.97.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	22c7ee1593107834cf262e36e824fc73
+# Source0-md5:	3980c8e6b94716b0d19b9e2a7d730596
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -104,7 +104,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/qml/org/kde/notification/qmldir
 %{_datadir}/dbus-1/interfaces/kf5_org.kde.StatusNotifierItem.xml
 %{_datadir}/dbus-1/interfaces/kf5_org.kde.StatusNotifierWatcher.xml
-%{_datadir}/kservicetypes5/knotificationplugin.desktop
 %{_datadir}/qlogging-categories5/knotifications.categories
 %{_datadir}/qlogging-categories5/knotifications.renamecategories
 
