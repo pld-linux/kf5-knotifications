@@ -1,26 +1,25 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeframever	5.114
+%define		kdeframever	5.249.0
 %define		qtver		5.15.2
 %define		kfname		knotifications
 
 Summary:	Desktop notifications
 Name:		kf5-%{kfname}
-Version:	5.114.0
-Release:	1
+Version:	5.249.0
+Release:	0.1
 License:	LGPL v2.1+
 Group:		X11/Libraries
-Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	1a64548994c3ec494d4d8e54e4d25aa8
+Source0:	https://download.kde.org/unstable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
+# Source0-md5:	de36c81da86d91e3df47964bfc3498c3
 URL:		http://www.kde.org/
-BuildRequires:	Qt5Core-devel >= %{qtver}
-BuildRequires:	Qt5DBus-devel >= %{qtver}
-BuildRequires:	Qt5Quick-devel >= %{qtver}
-BuildRequires:	Qt5Speech-devel >= %{qtver}
-BuildRequires:	Qt5Test-devel >= %{qtver}
-BuildRequires:	Qt5Widgets-devel >= %{qtver}
-BuildRequires:	Qt5X11Extras-devel >= %{qtver}
+BuildRequires:	Qt6Core-devel >= %{qtver}
+BuildRequires:	Qt6DBus-devel >= %{qtver}
+BuildRequires:	Qt6Quick-devel >= %{qtver}
+BuildRequires:	Qt6Test-devel >= %{qtver}
+BuildRequires:	Qt6TextToSpeech-devel >= %{qtver}
+BuildRequires:	Qt6Widgets-devel >= %{qtver}
 BuildRequires:	cmake >= 3.16
 BuildRequires:	kf5-extra-cmake-modules >= %{version}
 BuildRequires:	kf5-kconfig-devel >= %{version}
@@ -30,22 +29,21 @@ BuildRequires:	libcanberra-devel
 BuildRequires:	libdbusmenu-qt5-devel
 BuildRequires:	ninja
 BuildRequires:	pkgconfig
-BuildRequires:	qt5-linguist >= %{qtver}
+BuildRequires:	qt6-linguist >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xz
-Requires:	Qt5DBus >= %{qtver}
-Requires:	Qt5Speech >= %{qtver}
-Requires:	Qt5Widgets >= %{qtver}
-Requires:	Qt5X11Extras >= %{qtver}
+Requires:	Qt6DBus >= %{qtver}
+Requires:	Qt6TextToSpeech >= %{qtver}
+Requires:	Qt6Widgets >= %{qtver}
 Requires:	kf5-dirs
 Requires:	kf5-kconfig >= %{version}
 Requires:	kf5-kcoreaddons >= %{version}
 Requires:	kf5-kwindowsystem >= %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		qt5dir		%{_libdir}/qt5
+%define		qt6dir		%{_libdir}/qt6
 
 %description
 KNotification is used to notify the user of an event. It covers
@@ -56,8 +54,8 @@ Summary:	Header files for %{kfname} development
 Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kfname}
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	Qt5DBus-devel >= %{qtver}
-Requires:	Qt5Widgets-devel >= %{qtver}
+Requires:	Qt6DBus-devel >= %{qtver}
+Requires:	Qt6Widgets-devel >= %{qtver}
 
 %description devel
 Header files for %{kfname} development.
@@ -85,7 +83,7 @@ Pliki nagłówkowe dla programistów używających %{kfname}.
 rm -rf $RPM_BUILD_ROOT
 %ninja_install -C build
 
-%find_lang %{kfname}5_qt --with-qm --all-name --with-kde
+%find_lang %{kfname}6_qt --with-qm --all-name --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -93,22 +91,21 @@ rm -rf $RPM_BUILD_ROOT
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files -f %{kfname}5_qt.lang
+%files -f %{kfname}6_qt.lang
 %defattr(644,root,root,755)
 %doc README.md
-%ghost %{_libdir}/libKF5Notifications.so.5
-%attr(755,root,root) %{_libdir}/libKF5Notifications.so.*.*
-%dir %{_libdir}/qt5/qml/org/kde/notification
-%attr(755,root,root) %{_libdir}/qt5/qml/org/kde/notification/libknotificationqmlplugin.so
-%{_libdir}/qt5/qml/org/kde/notification/qmldir
-%{_datadir}/dbus-1/interfaces/kf5_org.kde.StatusNotifierItem.xml
-%{_datadir}/dbus-1/interfaces/kf5_org.kde.StatusNotifierWatcher.xml
-%{_datadir}/qlogging-categories5/knotifications.categories
-%{_datadir}/qlogging-categories5/knotifications.renamecategories
+%ghost %{_libdir}/libKF6Notifications.so.6
+%attr(755,root,root) %{_libdir}/libKF6Notifications.so.*.*
+%dir %{_libdir}/qt6/qml/org/kde/notification
+%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/notification/libknotificationqmlplugin.so
+%{_libdir}/qt6/qml/org/kde/notification/qmldir
+%{_libdir}/qt6/qml/org/kde/notification/kde-qmlmodule.version
+%{_libdir}/qt6/qml/org/kde/notification/knotificationqmlplugin.qmltypes
+%{_datadir}/qlogging-categories6/knotifications.categories
+%{_datadir}/qlogging-categories6/knotifications.renamecategories
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/KF5/KNotifications
-%{_libdir}/cmake/KF5Notifications
-%{_libdir}/libKF5Notifications.so
-%{qt5dir}/mkspecs/modules/qt_KNotifications.pri
+%{_includedir}/KF6/KNotifications
+%{_libdir}/cmake/KF6Notifications
+%{_libdir}/libKF6Notifications.so
